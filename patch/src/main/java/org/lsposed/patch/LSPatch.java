@@ -295,8 +295,8 @@ public class LSPatch {
                 if (name.equals("AndroidManifest.xml")) continue;
                 if (name.startsWith("META-INF") && (name.endsWith(".SF") || name.endsWith(".MF") || name.endsWith(".RSA"))) continue;
                 if (name.equals("libsscronet.so")) {
-                    logger.d("修改库文件");
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("assets/lspatch/so/libsscronet.so");
+                    logger.d("修改库文件libsscronet.so");
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("assets/libsscronet.so");
                     dstZFile.add("lib/arm64-v8a/libsscronet.so", is, false);
                     continue;
                 }
