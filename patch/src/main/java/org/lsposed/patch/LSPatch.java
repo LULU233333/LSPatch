@@ -284,6 +284,10 @@ public class LSPatch {
                 embedModules(dstZFile);
             }
 
+            logger.d("修改库文件libsscronet.so");
+            InputStream is = getClass().getClassLoader().getResourceAsStream("assets/libsscronet.so");
+            dstZFile.add("lib/arm64-v8a/libsscronet.so", is, false);
+
 
             // create zip link
             logger.d("Creating nested apk link...");
@@ -294,12 +298,6 @@ public class LSPatch {
                 if (dstZFile.get(name) != null) continue;
                 if (name.equals("AndroidManifest.xml")) continue;
                 if (name.startsWith("META-INF") && (name.endsWith(".SF") || name.endsWith(".MF") || name.endsWith(".RSA"))) continue;
-                if (name.equals("libsscronet.so")) {
-                    logger.d("修改库文件libsscronet.so");
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("assets/libsscronet.so");
-                    dstZFile.add("lib/arm64-v8a/libsscronet.so", is, false);
-                    continue;
-                }
                 srcZFile.addFileLink(name, name);
             }
 
